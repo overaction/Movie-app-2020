@@ -3,7 +3,6 @@ import Movie from './components/Movie';
 
 const API_URL = `https://api.themoviedb.org/3/movie/now_playing?api_key=9fb7a0bacca5550e66bf3fba29f5ba46&language=ko&page=1®ion=KR`;
 const SEARCH_URL = `https://api.themoviedb.org/3/search/movie?api_key=9fb7a0bacca5550e66bf3fba29f5ba46&query=`;
-const IMG_PATH = `https://image.tmdb.org/t/p/w1280`;
 
 const getMoviePromise = (url) => {
   return new Promise((resolve, reject) => {
@@ -22,7 +21,6 @@ const App = () => {
   const getMovies = (API) => {
     const FetchMovies = async () => {
       const Moviedata = await getMoviePromise(API);
-      console.log(Moviedata);
       setMovies(Moviedata.results);
     };
     FetchMovies();
@@ -44,6 +42,17 @@ const App = () => {
     setSearchTerm(e.target.value);
   };
 
+  const setVoteGrade = (vote) => {
+    if(vote >= 8)
+      return 'green';
+    else if(vote >= 6) {
+      return 'orange';
+    }
+    else {
+      return 'red';
+    }
+  }
+
   return (
     <>
       <header>
@@ -59,7 +68,7 @@ const App = () => {
       </header>
       <div className="movie-container">
         {movies.length > 0 &&
-          movies.map((movie) => <Movie key={movie.id} {...movie} />)}
+          movies.map((movie) => <Movie key={movie.id} setVote={setVoteGrade} {...movie} />)}
       </div>
     </>
   );
