@@ -12,4 +12,60 @@ body {
   margin: 0;
 }
 
+.movie {
+  position: relative;
+  margin: 1.5rem;
+  width: 300px;
+  border-radius: 3px;
+  box-shadow: 3px 3px 5px rgba(0,0,0,0.1);
+}
 
+.movie img {
+  max-width: 100%;
+  height: 450px;
+}
+
+.movie-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.movie-info {
+  display: flex;
+  justify-content: space-between;
+  background-color: #373b69;
+  padding: 1rem;
+}
+
+.movie-info h3 {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 0;
+}
+
+.movie-info span {
+  font-weight: bold;
+  text-align: center;
+  line-height: 30px;
+}
+
+
+.movie-over {
+  height: 80%;
+  overflow: auto;
+  background-color: #fff;
+  color: #22254b;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: translateY(100%);
+  transition: all 0.3s ease-in-out;
+  opacity: 0;
+}
+
+.movie:hover .movie-over {
+  transform: translateY(0);
+  opacity: 1;
+}
